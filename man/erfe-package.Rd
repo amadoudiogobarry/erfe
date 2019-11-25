@@ -13,22 +13,17 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{erfe}
 \packageIndices{erfe}
-~~ An overview of how to use the package, including the most important functions ~~
+This package provide functions to estimate the erfe estimator which is a generalisation of the within estimator using expectile.
 }
-\author{
-\packageAuthor{erfe}
-
-Maintainer: \packageMaintainer{erfe}
-}
+\author{ Amadou Barry}
 \references{
-~~ Literature or other references for background information ~~
+See the documentation for Armadillo, and RcppArmadillo, for more details.
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
+
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
+
 \examples{
-~~ simple examples of the most important functions ~~
+  x <- sqrt(1:4)
+  rcpparma_innerproduct(x)
+  rcpparma_outerproduct(x)
 }
