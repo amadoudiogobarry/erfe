@@ -1,2 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^data-raw$
+^README\.Rmd$
+^codecov\.yml$
+^cran-comments\.md$

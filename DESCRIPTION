@@ -1,11 +1,30 @@
 Package: erfe
 Type: Package
-Title: Estimate the expectile fixed effect model for longitudinal data
-Version: 1.0
-Date: 2019-11-25
-Author: Amadou Barry
-Maintainer: <barryhafia@gmail.com>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-Imports: Rcpp (>= 1.0.2)
-LinkingTo: Rcpp, RcppArmadillo
+Title: Estimate Expectile Fixed Effect Model for Panel Data
+Version: 0.0.1
+Date: 2022-11-28
+Authors@R: c(person("Amadou", "Barry", email = "barryhafia@gmail.com", role = c("cre","aut")))
+Maintainer: Amadou Barry <barryhafia@gmail.com>
+Description: Fits the Expectile Regression for Fixed Effect (ERFE) Model. 
+  The ERFE model applies the within transformation strategy to solve 
+  the incidental parameter problem and estimates the regressor 
+  effects on the expectiles of the response distribution. 
+  The ERFE estimate corresponds to the fixed-effect
+  within-estimator when the asymmetric point is 0.5.
+License: GPL-3
+BugReports: https://github.com/amadoudiogobarry/erfe/issues
+URL: https://arxiv.org/abs/2108.04737
+Depends:
+    R (>= 4.2)
+Imports: 
+    Matrix,
+    mvtnorm,
+    stats
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+RoxygenNote: 7.2.1
+Suggests: 
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
