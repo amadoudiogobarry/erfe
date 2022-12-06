@@ -18,7 +18,7 @@ erfeVecR(xmat, yvec, panSizeVec, asym, id)
 \item{id}{Numeric vector to individual panel size.}
 }
 \value{
-Return a list of objects related to the erfe model 
+Return a list of objects related to the erfe model
 such as the asymmetric point, the coefficient-estimate,
 the standard deviation, the estimated covariance.
 }
@@ -31,26 +31,25 @@ This function is part of the erfe package. It estimates
  covariance matrix.
 }
 \examples{
-# set the seed
 set.seed(13)
-T_obs <- 5 # panel size
-n_subj <- 50 # sample size
-sig <- diag(rep(1,T_obs))
-id <- rep(1:n_subj, each=T_obs) # subject id
+temps_obs <- 5
+n_subj <- 50
+sig <- diag(rep(1,temps_obs))
+id <- rep(1:n_subj, each=temps_obs)
 rvec <- c(mvtnorm::rmvnorm(n_subj, sigma = sig))
-fvec <- (1 + rep(rnorm(n_subj) , each=T_obs))
-xmat <- cbind(rt(n_subj*T_obs, df=2, ncp=1.3), 1.2*fvec +
- rnorm(n_subj*T_obs, mean = 0.85, sd=1.5) )
+fvec <- (1 + rep(rnorm(n_subj) , each=temps_obs))
+xmat <- cbind(rt(n_subj*temps_obs, df=2, ncp=1.3),
+ 1.2 * fvec + rnorm(n_subj * temps_obs, mean = 0.85, sd = 1.5) )
 yvec <- 0.6*xmat[, 1] + xmat[, 2] + fvec + rvec
 asym <- 0.5
-panSizeVec <- unname(unlist(lapply(split(id, id),function(x) length(x))))
-erfeVecR(xmat, yvec, panSizeVec, asym, id) 
-
+panSizeVec <- unname(unlist(lapply(split(id, id), function(x) length(x))))
+erfeVecR(xmat, yvec, panSizeVec, asym, id)
 }
 \references{
-Barry, Amadou; Oualkacha, Karim and Charpentier, Arthur. (2022). 
-\emph{Weighted asymmetric least squares regression with fixed-effects}.
- arXiv preprint arXiv:2108.04737.
+Barry, Amadou, Oualkacha, Karim, and Charpentier 
+ Arthur. (2022). \emph{Weighted asymmetric least squares
+  regression with fixed-effects}.
+ arXiv preprint arXiv:2108.04737
 }
 \author{
 Amadou Barry, \email{barryhafia@gmail.com}

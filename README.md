@@ -9,37 +9,40 @@
 status](https://www.r-pkg.org/badges/version/erfe)](https://CRAN.R-project.org/package=erfe)
 [![Codecov test
 coverage](https://codecov.io/gh/amadoudiogobarry/erfe/branch/master/graph/badge.svg)](https://app.codecov.io/gh/amadoudiogobarry/erfe?branch=master)
+[![R-CMD-check](https://github.com/amadoudiogobarry/erfe/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/amadoudiogobarry/erfe/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## What is ERFE
+## What is the <code> erfe </code> package
 
-**ERFE** is a expectile-based method for panel data. The **ERFE** model
-applies the within transformation strategy to solve the incidental
-parameter problem and estimates the regressor effects on the expectiles
-of the response distribution. The **ERFE** model captures the data
-heteroscedasticity and eliminates any bias resulting from the
-correlation between the regressors and the omitted factors. When
-$\tau=0.5$ the ERFE model estimator corresponds to the fixed-effects
-within estimator.
+The <code> erfe </code> package estimates the expectile regression panel
+fixed effect model (**ERFE**). The **ERFE** model is a expectile-based
+method for panel data. The **ERFE** model extends the within
+transformation strategy to solve the incidental parameter problem within
+the expectile regression framework. The **ERFE** model estimates the
+regressor effects on the expectiles of the response distribution. The
+**ERFE** model captures the data heteroscedasticity and eliminates any
+bias resulting from the correlation between the regressors and the
+omitted factors. When $\tau=0.5$ the ERFE model estimator corresponds to
+the classical fixed-effects within estimator.
 
-## How to use the ERFE package
+## How to use the <code> erfe </code> package
 
-The main function of the package is the <code> erfe </code> function and
-consists of four arguments. The <code> predictors </code> argument which
-corresponds to the design matrix or the matrix of regressors. Note that,
-the design matrix should contain time varying regressors only, because
-the **ERFE** model do not make inference for time-invariant regressors.
-The <code> response </code> argument is the continuous response
-variable, and the <code> asymp </code> argument corresponds to the
-vector of asymmetric points with default values:
-$(0.25, \ 0.5, \ 0.75).$ The <code> id </code> argument corresponds to
-the subject ids and should be ordered according to the time or years
-variable.
+The main function of the <code> erfe </code> package is the <code> erfe
+</code> function and consists of four arguments. The <code> predictors
+</code> matrix which corresponds to the design matrix or the matrix of
+regressors. Note that, the design matrix should contain time varying
+regressors only, because the **ERFE** model do not make inference for
+time-invariant regressors. The <code> response </code> variable is the
+continuous response variable, and the <code> asymp </code> parameter
+corresponds to the vector of asymmetric points with default values:
+$\tau \in (0.25, \ 0.5, \ 0.75).$ The <code> id </code> parameter
+corresponds to the subject ids and should be ordered according to the
+time or year.
 
 ## Installation
 
-You can install the development version of **ERFE** from
-[GitHub](https://github.com/) with:
+You can install the development version of the <code> erfe </code>
+package from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -64,13 +67,13 @@ head(sim_panel_data)
 #> 6  2 -0.2610938 -1.326893 -3.258152   50    1
 
 asymp <- c(0.25,0.5,0.75) # sequence of asymmetric points
-predictors <- cbind(sim_panel_data$pred1, sim_panel_data$pred2) # design matrix
+predictors <- as.matrix(cbind(sim_panel_data$pred1, sim_panel_data$pred2)) # design matrix
 response <- sim_panel_data$resp # response variable
 id <- sim_panel_data$id # ordered subject ids variable
 outlist <- erfe(predictors, response, asymp=c(0.25,0.5,0.75), id)
 ```
 
-For each asymmetric point we have a list of results including the
+For each asymmetric point, we have a list of results including the
 asymmetric point itself, the estimator and the estimator of its
 covariance matrix, and the residuals of the model. For example, the
 results of the **ERFE** model for $\tau=0.75$ can be retrieved like
@@ -89,5 +92,3 @@ outlist75$covMat
 #> [1,] 0.04042441 0.1457498
 #> [2,] 0.14574977 0.6555698
 ```
-
-<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>. -->

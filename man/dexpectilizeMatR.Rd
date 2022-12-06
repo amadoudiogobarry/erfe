@@ -2,7 +2,7 @@
 % Please edit documentation in R/dexpectilizeMatR.R
 \name{dexpectilizeMatR}
 \alias{dexpectilizeMatR}
-\title{Dexpectilize a matrix according the a single asymmetric point 
+\title{Dexpectilize a matrix according the a single asymmetric point
 \eqn{\tau \in (0, 1)}.}
 \usage{
 dexpectilizeMatR(ymat, aweight, panSizeVec)
@@ -18,35 +18,32 @@ dexpectilizeMatR(ymat, aweight, panSizeVec)
 Return a de-expectilized matrix of the matrix ymat.
 }
 \description{
-This function is part of the erfe package. It de-expectilizes 
-a matrix of data vertor-wise, which means subtracting 
+This function is part of the erfe package. It de-expectilizes
+a matrix of data vertor-wise, which means subtracting
 the expectile of level \eqn{\tau \in (0, 1)} to every vector of
 the matrix column-wise. When \eqn{\tau=0.5} then the process of
-de-expectilizing corresponds to the process of deamining 
+de-expectilizing corresponds to the process of deamining
 the matrix column-wise. That is, subtracting the mean-column
 from the column vector.
 }
 \examples{
-# set the seed
 set.seed(13)
-T_obs <- 5 # panel size
-n_subj <- 50 # sample size
-id <- rep(1:n_subj, each=T_obs) # subject id
-asym <- 0.5 # asymmetric point
-# panel length vector
+temps_obs <- 5
+n_subj <- 50
+id <- rep(1:n_subj, each=temps_obs) 
+asym <- 0.5
 panSizeVec <- unname(unlist(lapply(split(id, id), function(x) length(x)))) 
-ymat <- matrix(NA, nrow = n_subj*T_obs, ncol = 5)
-# matrix of data
-ymat <- matrix(mvtnorm::rmvnorm(n_subj*ncol(ymat), 
-sigma = diag(rep(1,T_obs))), ncol = ncol(ymat)) 
-aweight <- rep(asym, T_obs*n_subj) # individual asymmetric weight
-aweight[!(ymat[, 1] > mean(ymat[, 1]))] = 1 - asym 
-dexpectilizeMatR(ymat, aweight, panSizeVec) 
-
+ymat <- matrix(NA, nrow = n_subj * temps_obs, ncol = 5)
+ymat <- matrix(mvtnorm::rmvnorm(n_subj * ncol(ymat),
+sigma = diag(rep(1, temps_obs))), ncol = ncol(ymat))
+aweight <- rep(asym, temps_obs * n_subj)
+aweight[!(ymat[, 1] > mean(ymat[, 1]))] = 1 - asym
+dexpectilizeMatR(ymat, aweight, panSizeVec)
 }
 \references{
-Barry, Amadou; Oualkacha, Karim and Charpentier, Arthur. (2022). 
-\emph{Weighted asymmetric least squares regression with fixed-effects}.
+Barry, Amadou, Oualkacha, Karim, and Charpentier
+ Arthur. (2022). \emph{Weighted asymmetric least squares
+  regression with fixed-effects}.
  arXiv preprint arXiv:2108.04737
 }
 \author{
