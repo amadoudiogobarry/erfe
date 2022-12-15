@@ -31,7 +31,6 @@ of units and year is the panel number.
 }
 \examples{
 data(sim_panel_data)
-## head(sim_panel_data)
 }
 \references{
 This data set was artificially created for the erfe package.

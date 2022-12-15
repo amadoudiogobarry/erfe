@@ -19,7 +19,7 @@ License: GPL-3
 URL: https://arxiv.org/abs/2108.04737
 BugReports: https://github.com/amadoudiogobarry/erfe/issues
 Depends:
-    R (>= 4.2)
+    R (>= 2.10)
 Imports:
     Matrix,
     mvtnorm,

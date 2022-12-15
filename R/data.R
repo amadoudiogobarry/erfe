@@ -26,6 +26,5 @@
 #' 
 #' @examples
 #' data(sim_panel_data)
-#' ## head(sim_panel_data)
 "sim_panel_data"
 
